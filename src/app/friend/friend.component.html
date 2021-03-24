@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card">
+                <div class="card-header bg-primary text-light">
+                    Friends
+                </div>
+                <div class="card-body">
+                    <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+                    <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+                    <h3>All Friends</h3>
+                    <li *ngFor='let friend of friends'>
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="icon.jpg" alt="photo">
+                            <div class="card-body">
+                              <h5 class="card-title">{{friend.name}}</h5>
+                              <p class="card-text">Phone: {{friend.phone}} <br>
+                                  Email: {{friend.email}} <br> 
+                                  Birthday: {{friend.birthday}}
+                              </p>
+                              <button [routerLink]="['/editFriend', friend.id]" class="btn btn-info btn-sm"> Edit</button>
+                              <button (click)="deleteFriend(friend.id)" class="btn btn-danger bt-sm">Delete</button>
+                            </div>
+                          </div>
+                    </li>
+                </div>
+                <a [routerLink]="['/addFriend']"><button class="btn btn-primary btn-sm">Add a Friend</button></a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card">
+                <div class="card-header bg-primary text-light"> Edit Friend Info </div>
+                <div class="card-body">
+                    <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+                    <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+                    <form [formGroup]="friendEditForm" (ngSubmit)="updateFriend()">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" formControlName="name">
+                            <div *ngIf="friendEditForm.get('name').dirty">
+                                <div class="alert-danger" [hidden]="!friendEditForm.get('name').errors?.required">
+                                    Name is required 
+                                </div>
+                                <div class="alert-danger" [hidden]="!friendEditForm.get('name').errors?.pattern">
+                                    Numbers are not allowed
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" class="form-control" formControlName="email">
+                            <div *ngIf="friendEditForm.get('email').dirty">
+                                <div class="alert-danger" [hidden]="!friendEditForm.get('email').errors?.pattern">
+                                    Email is not in proper format 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text" class="form-control" formControlName="phone">
+                            <div *ngIf="friendEditForm.get('phone').dirty">
+                                <div class="alert-danger" [hidden]="!friendEditForm.get('phone').errors?.required">
+                                    Phone number is required 
+                                </div>
+                                <div class="alert-danger" [hidden]="!friendEditForm.get('phone').errors?.pattern">
+                                    Characters are not allowed
+                                </div>
+                                <div class="alert-danger" [hidden]="!friendEditForm.get('phone').errors?.maxLength">
+                                    Phone number cannot exceed 11 digits
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Birthday</label>
+                            <input type="date" class="form-control" formControlName="birthday">
+                            <div *ngIf="friendEditForm.get('birthday').dirty">
+                                <div class="alert-danger" [hidden]="!friendEditForm.get('birthday').errors?.required">
+                                    Birthday required 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Image</label>
+                            <input type="text" class="form-control" formControlName="imageURL">
+                        </div>
+                        <button type="submit" class="btn btn-primary" [disabled]="friendEditForm.invalid">Update Friend</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
